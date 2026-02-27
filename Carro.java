@@ -14,10 +14,12 @@ class Carro {
         System.out.println("La velocidad del auto es " + Velocidad + " km/h");
 
     }
-
-    
-
-
-
-
+        public void frenar (){
+            Velocidad -= 10;
+            if (Velocidad < 0){
+                Velocidad = 0;
+            }
+            System.out.println("La velocidad del auto es " + Velocidad + " km/h");
+        }
+ 
 }
