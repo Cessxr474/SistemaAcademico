@@ -1,10 +1,7 @@
 
 package sistemaacademico;
 
-/**
- *
- * @author cesar
- */
+
 public class SistemaAcademico {
     static ArrayList<Estudiante> estudiantes = new ArrayList<>();
     static ArrayList<Asignatura> asignaturas = new ArrayList<>();
