@@ -6,7 +6,6 @@ package sistemaacademico;
  * @author cesar
  */
 public class SistemaAcademico {
-    // Actividad 1: Definir listas y scanner 
     static ArrayList<Estudiante> estudiantes = new ArrayList<>();
     static ArrayList<Asignatura> asignaturas = new ArrayList<>();
     static ArrayList<Nota> notas = new ArrayList<>();
@@ -29,9 +28,9 @@ public class SistemaAcademico {
         opcion = leer.nextInt();
         switch (opcion) {
             case 1: registrarEstudiante(); break;
-            case 2: listarEstudiantes(); break;
-            case 3: /* Aquí conectaremos al Desarrollador 1 */ break;
-            case 4: /* Aquí conectaremos al Desarrollador 2 */ break;
+            case 2: mostrarEstudiantes(); break;
+            case 3: /* registra estudiante */ break;
+            case 4: /* registrar asignatura */ break;
             case 5: System.out.println("Saliendo..."); break;
             default: System.out.println("Opción no válida.");
         }
