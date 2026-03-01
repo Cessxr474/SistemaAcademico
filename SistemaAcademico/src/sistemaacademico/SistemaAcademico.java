@@ -9,7 +9,6 @@ public class SistemaAcademico {
     static Scanner leer = new Scanner(System.in);
 
     public static void main(String[] args) {
-        
     }
     public static void mostrarMenu() {
         int opcion = 0;
@@ -53,13 +52,18 @@ public class SistemaAcademico {
     public static void buscarAsignatura(){
         System.out.println("Ingrese el codigo de la asignatura que quiere buscar: ");
         String cod = leer.nextLine();
+        boolean encontrado =false;
         
         for (Asignatura l : asignaturas) {
             if(l.getCodigo().equals(cod)){
-                System.out.println("La asignatura es: "+l.getNombre()+"Dictada por el docente: "+l.getDocente());
-            } else {
-                System.out.println("No se ha encontrado la asignatura: ");
-            }
+                System.out.println(l);
+                encontrado=true;
+                break;
+            } 
+        }
+        
+        if(encontrado==true){
+            System.out.println("No se encontró la asignatura ");
         }
     }
     
@@ -69,7 +73,7 @@ public class SistemaAcademico {
         String codi= leer.nextLine();
         
         for (Asignatura e : asignaturas) {
-            if(e.getCodigo().equals(e)){
+            if(e.getCodigo().equals(codi)){
             asignaturas.remove(e);
             eliminado=true;
             break;
@@ -83,52 +87,106 @@ public class SistemaAcademico {
         }
     }
     
-    
-    // aqui crearemos los metodos del estudiante (registra, buscar, mostrar, eliminar y actualizar estudiantes)
-  public static void registrarEstudiante() {
-        System.out.println("REGISTRO DE ESTUDIANTE");
-        System.out.print("Ingrese el código: ");
-        int id = leer.nextInt();
-        leer.nextLine(); 
-        System.out.print("Ingrese el nombre: ");
-        String nom = leer.nextLine();
-        System.out.print("Ingrese el apellido: ");
-        String ape = leer.nextLine();
-        System.out.print("Ingrese la edad: ");
-        int edad = leer.nextInt();
-        System.out.print("Ingrese el semestre: ");
-        int sem = leer.nextInt();
-        leer.nextLine(); 
-        Estudiante nuevo = new Estudiante(id, nom, ape, edad, sem);
-        estudiantes.add(nuevo);
-        System.out.println("¡Estudiante registrado con éxito!");
+    public static void actualizarAsignatura(){
+        System.out.println("Ingrese el codigo de la asignatura que quiere modificar o actualizar: ");
+        String codi= leer.nextLine();
+        
+        for (Asignatura e : asignaturas) {
+            if(e.getCodigo().equals(codi)){
+                System.out.println("Ingrese el nuevo nombre de la asignatura: ");
+                String name= leer.nextLine();
+                e.setNombre(name);
+                
+                System.out.println("Ingrese el nombre del docente: ");
+                String doc= leer.nextLine();
+                e.setDocente(doc);
+                
+                System.out.println("Ingrese el nuevo nombre de la asignatura: ");
+                int credi= leer.nextInt();
+                leer.nextLine();
+                e.setCreditos(credi);
+                
+                System.out.println("Asignatura actualizada correctamente: ");
+            } else{
+                System.out.println("No se a podido encontrar la asignatura que quiere actualizar");
+            }
+        }
     }
     
-    public static void mostrarEstudiantes() {
+    public static void listarAsignatura(){
+        if(asignaturas.isEmpty()){
+            System.out.println("No hay asignaturas registradas.");
+        } else{
+            StringBuilder sb = new StringBuilder();
+            for (Asignatura a : asignaturas) {
+                sb.append("Nombre: ").append(a.getNombre()).append("\n");
+                sb.append("Codigo: ").append(a.getCodigo()).append("\n");
+                sb.append("Creditos: ").append(a.getCreditos()).append("\n");
+                sb.append("Docente: ").append(a.getDocente()).append("\n");
+                sb.append("------------------\n"); // separador
+                   
+            }
+            System.out.println(sb);
+        }
+    
+}
+
+
+
+public static void registrarEstudiante() {
+        System.out.println("\n--- REGISTRO DE ESTUDIANTE ---");
+        System.out.print("Ingrese el código: ");
+        String cod = leer.nextInt();
+        leer.nextLine(); // Importante: Limpiar el buffer para que no se salte el nombre
+
+        System.out.print("Ingrese el nombre: ");
+        String nom = leer.nextLine();
+
+        System.out.print("Ingrese el apellido: ");
+        String ape = leer.nextLine();
+
+        System.out.print("Ingrese la edad: ");
+        int edad = leer.nextInt();
+
+        System.out.print("Ingrese el semestre: ");
+        int sem = leer.nextInt();
+        leer.nextLine(); // Limpiar el buffer de nuevo
+
+        // Aquí creas el objeto con la clase que hizo tu compañero
+        Estudiante nuevo = new Estudiante(cod, nom, ape, edad, sem);
+        
+        // Lo guardas en tu lista global
+        estudiantes.add(nuevo);
+        
+        System.out.println("¡Estudiante registrado con éxito!");
+    }
+
+public static void mostrarEstudiantes() {
         if (estudiantes.isEmpty()) {
             System.out.println("No hay estudiantes en el sistema.");
         } else {
             System.out.println("\n--- LISTADO GENERAL ---");
             for (Estudiante e : estudiantes) {
-                System.out.println("ID: " + e.getId() + " | Nombre: " + e.getNombre() + " " + e.getApellido());
+                // Usamos los getters que tu compañero puso en la clase Estudiante
+                System.out.println("ID: " + e.getCodigo() + " | Nombre: " + e.getNombre() + " " + e.getApellido());
             }
         }
     }
-    public static void actualizarEstudiante() {
+public static void actualizarEstudiante() {
     System.out.print("Ingrese el código del estudiante a modificar: ");
-    int id = leer.nextInt();
+    String id = leer.nextInt();
     leer.nextLine();
     for (Estudiante e : estudiantes) {
-        if (e.getId() == id) {
+        if (e.getCodigo() == id) {
             System.out.print("Nuevo nombre: ");
-            e.setNombre(leer.nextLine()); 
+            e.setNombre(leer.nextLine()); // Necesitas que tu amigo haya creado el Setter
             System.out.println("¡Datos actualizados!");
             return;
         }
     }
     System.out.println("Estudiante no encontrado.");
 }
-    public static void eliminarEstudiante() {
+public static void eliminarEstudiante() {
     System.out.print("Ingrese el código del estudiante a eliminar: ");
     int id = leer.nextInt();
     for (int i = 0; i < estudiantes.size(); i++) {
@@ -140,18 +198,19 @@ public class SistemaAcademico {
     }
     System.out.println("No se encontró el código.");
 }
-    public static void buscarEstudiante() {
+public static void buscarEstudiante() {
     System.out.println("\n--- BUSCAR ESTUDIANTE ---");
     System.out.print("Ingrese el código del estudiante a buscar: ");
-    int idBuscado = leer.nextInt();
-    leer.nextLine();
+    String idBuscado = leer.nextInt();
+    leer.nextLine(); // Limpiar el buffer
 
     boolean encontrado = false;
 
     for (Estudiante e : estudiantes) {
-        if (e.getId() == idBuscado) {
+        // Comparamos el código ingresado con el código del objeto en la lista
+        if (e.getCodigo() == idBuscado) {
             System.out.println("\n¡Estudiante encontrado!");
-            System.out.println("Código: " + e.getId());
+            System.out.println("Código: " + e.getCodigo());
             System.out.println("Nombre: " + e.getNombre());
             System.out.println("Apellido: " + e.getApellido());
             System.out.println("Edad: " + e.getEdad());
@@ -165,7 +224,4 @@ public class SistemaAcademico {
         System.out.println("Error: No se encontró ningún estudiante con el código " + idBuscado);
     }
 }
-  }
-
-
-    
+}
