@@ -132,12 +132,12 @@ public class SistemaAcademico {
 }
 
 
-
+// aqui se crearon los metodos de la clase estudiante (registrar estudiante, buscar, mostrar, actualizar, y eliminar)
 public static void registrarEstudiante() {
         System.out.println("\n--- REGISTRO DE ESTUDIANTE ---");
         System.out.print("Ingrese el código: ");
         String cod = leer.nextInt();
-        leer.nextLine(); // Importante: Limpiar el buffer para que no se salte el nombre
+        leer.nextLine(); 
 
         System.out.print("Ingrese el nombre: ");
         String nom = leer.nextLine();
@@ -150,12 +150,12 @@ public static void registrarEstudiante() {
 
         System.out.print("Ingrese el semestre: ");
         int sem = leer.nextInt();
-        leer.nextLine(); // Limpiar el buffer de nuevo
+        leer.nextLine(); 
 
-        // Aquí creas el objeto con la clase que hizo tu compañero
+   
         Estudiante nuevo = new Estudiante(cod, nom, ape, edad, sem);
         
-        // Lo guardas en tu lista global
+     
         estudiantes.add(nuevo);
         
         System.out.println("¡Estudiante registrado con éxito!");
@@ -167,7 +167,6 @@ public static void mostrarEstudiantes() {
         } else {
             System.out.println("\n--- LISTADO GENERAL ---");
             for (Estudiante e : estudiantes) {
-                // Usamos los getters que tu compañero puso en la clase Estudiante
                 System.out.println("ID: " + e.getCodigo() + " | Nombre: " + e.getNombre() + " " + e.getApellido());
             }
         }
@@ -179,7 +178,7 @@ public static void actualizarEstudiante() {
     for (Estudiante e : estudiantes) {
         if (e.getCodigo() == id) {
             System.out.print("Nuevo nombre: ");
-            e.setNombre(leer.nextLine()); // Necesitas que tu amigo haya creado el Setter
+            e.setNombre(leer.nextLine()); 
             System.out.println("¡Datos actualizados!");
             return;
         }
@@ -202,12 +201,11 @@ public static void buscarEstudiante() {
     System.out.println("\n--- BUSCAR ESTUDIANTE ---");
     System.out.print("Ingrese el código del estudiante a buscar: ");
     String idBuscado = leer.nextInt();
-    leer.nextLine(); // Limpiar el buffer
+    leer.nextLine(); 
 
     boolean encontrado = false;
 
     for (Estudiante e : estudiantes) {
-        // Comparamos el código ingresado con el código del objeto en la lista
         if (e.getCodigo() == idBuscado) {
             System.out.println("\n¡Estudiante encontrado!");
             System.out.println("Código: " + e.getCodigo());
@@ -216,10 +214,9 @@ public static void buscarEstudiante() {
             System.out.println("Edad: " + e.getEdad());
             System.out.println("Semestre: " + e.getSemestre());
             encontrado = true;
-            break; // Salimos del ciclo porque ya lo encontramos
+            break; 
         }
     }
-
     if (!encontrado) {
         System.out.println("Error: No se encontró ningún estudiante con el código " + idBuscado);
     }
