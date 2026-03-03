@@ -1,6 +1,7 @@
 
 package sistemaacademico;
-
+import java.util.ArrayList;
+import java.util.Scanner;
 /**
  *
  * @author cesar
@@ -12,7 +13,7 @@ public class SistemaAcademico {
     static Scanner leer = new Scanner(System.in);
 
     public static void main(String[] args) {
-        
+        mostrarMenu();
     }
     public static void mostrarMenu() {
         int opcion = 0;
@@ -30,12 +31,24 @@ public class SistemaAcademico {
             case 1: registrarEstudiante(); break;
             case 2: mostrarEstudiantes(); break;
             case 3: /* registra estudiante */ break;
-            case 4: /* registrar asignatura */ break;
+            case 4: registrarNota(); break;
             case 5: System.out.println("Saliendo..."); break;
             default: System.out.println("Opción no válida.");
         }
     } while (opcion != 5);
 }
+
+    private static void registrarNota() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private static void mostrarEstudiantes() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private static void registrarEstudiante() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
 
 
